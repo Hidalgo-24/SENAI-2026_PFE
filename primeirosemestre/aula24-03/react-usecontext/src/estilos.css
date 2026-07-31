@@ -1,0 +1,46 @@
+.header-light{
+    background-color: #f8e786;
+    color: blue;
+}
+
+.header-dark{
+    background-color: darkblue;
+    color: white;
+}
+.noticias {
+  padding: 20px;
+}
+
+.noticias h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: white;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.card p {
+  padding: 0 10px 10px;
+  font-size: 14px;
+}
