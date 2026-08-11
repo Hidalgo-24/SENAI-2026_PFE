@@ -9,10 +9,10 @@ export default function Sobre() {
         {/* Banner de Título */}
         <section style={styles.titleSection}>
           <h1 style={styles.title}>
-            Sobre a Turma <span style={styles.highlight}>Terceirão Shark</span> 🦈
+            Sobre a Turma <span style={styles.highlight}>Terceirão B</span> 🦈
           </h1>
           <p style={styles.subtitle}>
-            Conheça quem faz parte dessa jornada inesquecível no 3B - SESI Mirandópolis.
+            Conheça quem faz parte dessa jornada do 3B - SESI 323 de Mirandópolis.
           </p>
         </section>
 
@@ -20,10 +20,7 @@ export default function Sobre() {
         <section style={styles.aboutCard}>
           <h2 style={styles.cardTitle}>Nossa História</h2>
           <p style={styles.text}>
-            Chegamos ao topo do ensino médio! O ano de 2026 marca o encerramento de um ciclo
-            recheado de gargalhadas, trotes fantásticos, provas intensas e amizades que vão
-            durar para a vida toda. Como os tubarões, navegamos juntos pelos desafios e
-            estamos prontos para dominar novos mares no futuro.
+            Chegamos ao último ano do ensino médio! O ano de 2026 marca o começo e o fim de um ciclo repleto de pessoas novas que foram importantes em todo o ano.
           </p>
         </section>
 
@@ -45,22 +42,22 @@ export default function Sobre() {
 
         {/* Seção de Valores / Espírito da Turma */}
         <section style={styles.valuesSection}>
-          <h2 style={styles.sectionHeading}>O Espírito Tubarão</h2>
+          <h2 style={styles.sectionHeading}>O Espírito Fracassado</h2>
          
           <div style={styles.valuesGrid}>
             <div style={styles.valueCard}>
               <div style={styles.icon}>🤝</div>
-              <h3 style={styles.valueTitle}>União</h3>
+              <h3 style={styles.valueTitle}>Parceria</h3>
               <p style={styles.valueText}>
-                Ninguém fica para trás. Do primeiro dia ao baile de formatura, jogamos juntos!
+                Ninguém fica para trás. Do primeiro dia do ano até o interclasse, sempre juntos meu jogador!
               </p>
             </div>
 
             <div style={styles.valueCard}>
-              <div style={styles.icon}>⚡</div>
-              <h3 style={styles.valueTitle}>Energia</h3>
+              <div style={styles.icon}>🫷🫸</div>
+              <h3 style={styles.valueTitle}>Aura</h3>
               <p style={styles.valueText}>
-                Interclasses, gincanas e trotes: onde o 3B passa, a marca fica registrada.
+                Interclasses, trotes: onde o 3B passa, exala muita aura.
               </p>
             </div>
 
@@ -68,7 +65,7 @@ export default function Sobre() {
               <div style={styles.icon}>🚀</div>
               <h3 style={styles.valueTitle}>Futuro</h3>
               <p style={styles.valueText}>
-                Vestibulares, novos projetos e carreiras. O oceano é grande demais para parar por aqui.
+                Vestibulares, novos projetos e carreiras. O mundo é grande demais para pensar pequeno.
               </p>
             </div>
           </div>
@@ -81,107 +78,116 @@ export default function Sobre() {
 
 const styles = {
   main: {
-    maxWidth: '1100px',
+    maxWidth: '1140px',
     margin: '0 auto',
-    padding: '3rem 1.5rem 5rem 1.5rem',
+    padding: '4rem 1.5rem 6rem 1.5rem',
   },
   titleSection: {
     textAlign: 'center',
-    marginBottom: '3rem',
+    marginBottom: '3.5rem',
   },
   title: {
-    fontSize: '2.5rem',
-    fontWeight: '800',
-    color: '#FFFFFF',
-    marginBottom: '0.8rem',
+    fontSize: '2.8rem',
+    fontWeight: '900',
+    color: '#F8FAFC',
+    marginBottom: '1rem',
+    letterSpacing: '-0.5px',
   },
   highlight: {
-    color: '#00E5FF',
-    textShadow: '0 0 12px rgba(0, 229, 255, 0.5)',
+    color: '#A855F7',
+    textShadow: '0 0 16px rgba(168, 85, 247, 0.6)',
   },
   subtitle: {
-    color: '#8E9AAF',
-    fontSize: '1.1rem',
+    color: '#94A3B8',
+    fontSize: '1.15rem',
+    fontWeight: '400',
   },
   aboutCard: {
-    backgroundColor: 'rgba(13, 27, 42, 0.7)',
-    border: '1px solid rgba(0, 229, 255, 0.25)',
-    borderRadius: '16px',
-    padding: '2.5rem',
-    marginBottom: '3rem',
-    backdropFilter: 'blur(8px)',
-    boxShadow: '0 8px 25px rgba(0, 0, 0, 0.4)',
+    backgroundColor: 'rgba(23, 15, 38, 0.75)',
+    border: '1px solid rgba(168, 85, 247, 0.3)',
+    borderRadius: '20px',
+    padding: '3rem 2.5rem',
+    marginBottom: '3.5rem',
+    backdropFilter: 'blur(12px)',
+    boxShadow: '0 12px 32px rgba(0, 0, 0, 0.5)',
+    position: 'relative',
+    overflow: 'hidden',
   },
   cardTitle: {
-    color: '#00E5FF',
-    fontSize: '1.6rem',
+    color: '#C084FC',
+    fontSize: '1.75rem',
     marginBottom: '1rem',
+    fontWeight: '700',
   },
   text: {
-    color: '#F4F6F8',
-    fontSize: '1.05rem',
+    color: '#E2E8F0',
+    fontSize: '1.1rem',
     lineHeight: '1.8',
   },
   statsGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-    gap: '1.5rem',
-    marginBottom: '4rem',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    gap: '1.75rem',
+    marginBottom: '4.5rem',
   },
   statBox: {
-    backgroundColor: 'rgba(7, 15, 21, 0.8)',
-    border: '1px solid #005f73',
-    borderRadius: '12px',
-    padding: '1.5rem',
+    backgroundColor: 'rgba(15, 23, 42, 0.85)',
+    border: '1px solid rgba(192, 132, 252, 0.2)',
+    borderRadius: '16px',
+    padding: '2rem 1.5rem',
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
     gap: '0.5rem',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
   },
   statNumber: {
-    color: '#00E5FF',
-    fontSize: '2.2rem',
+    color: '#A855F7',
+    fontSize: '2.5rem',
     fontWeight: '800',
-    textShadow: '0 0 10px rgba(0, 229, 255, 0.4)',
+    textShadow: '0 0 12px rgba(168, 85, 247, 0.5)',
   },
   statLabel: {
-    color: '#8E9AAF',
-    fontSize: '0.95rem',
+    color: '#94A3B8',
+    fontSize: '0.875rem',
+    fontWeight: '600',
     textTransform: 'uppercase',
-    letterSpacing: '1px',
+    letterSpacing: '1.5px',
   },
   valuesSection: {
     textAlign: 'center',
   },
   sectionHeading: {
-    color: '#FFFFFF',
-    fontSize: '1.8rem',
-    marginBottom: '2rem',
+    color: '#F8FAFC',
+    fontSize: '2rem',
+    fontWeight: '800',
+    marginBottom: '2.5rem',
   },
   valuesGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
     gap: '2rem',
   },
   valueCard: {
-    backgroundColor: 'rgba(13, 27, 42, 0.5)',
-    border: '1px solid rgba(0, 95, 115, 0.5)',
-    borderRadius: '12px',
-    padding: '2rem 1.5rem',
-    transition: 'transform 0.3s ease',
+    backgroundColor: 'rgba(23, 15, 38, 0.55)',
+    border: '1px solid rgba(168, 85, 247, 0.25)',
+    borderRadius: '16px',
+    padding: '2.5rem 1.75rem',
+    boxShadow: '0 6px 20px rgba(0, 0, 0, 0.25)',
   },
   icon: {
-    fontSize: '2.5rem',
-    marginBottom: '1rem',
+    fontSize: '2.8rem',
+    marginBottom: '1.25rem',
   },
   valueTitle: {
-    color: '#00E5FF',
-    fontSize: '1.3rem',
-    marginBottom: '0.5rem',
+    color: '#C084FC',
+    fontSize: '1.4rem',
+    fontWeight: '700',
+    marginBottom: '0.75rem',
   },
   valueText: {
-    color: '#8E9AAF',
-    fontSize: '0.95rem',
-    lineHeight: '1.5',
+    color: '#94A3B8',
+    fontSize: '1rem',
+    lineHeight: '1.6',
   },
 };

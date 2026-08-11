@@ -1,7 +1,7 @@
 export default function Footer(){
     return(
         <footer>
-            <p>Todos os direitos reservados à 3B - Sesi Mirandópolis</p>
+            <p>Todos os direitos reservados à 3B - Sesi 323 de Mirandópolis</p>
         </footer>
     )};
     const styles = {

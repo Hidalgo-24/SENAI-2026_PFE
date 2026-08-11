@@ -5,7 +5,7 @@ export default function Header() {
     <header style={styles.header}>
       <h1 style={styles.logo}>
         <Link href='/' style={styles.logoLink}>
-          Terceirão <span style={styles.logoHighlight}>Shark</span> 🦈
+          Terceirão <span style={styles.logoHighlight}>B</span> 🦈
         </Link>
       </h1>
       <nav>
