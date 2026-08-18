@@ -6,10 +6,10 @@ import styles from "./page.module.css";
 export default function Home() {
   const [numero1, setNumero1] = useState("");
   const [numero2, setNumero2] = useState("");
-  const [resultado, setResultado] = useState<number | null>(null);
+  const [resultado, setResultado] = useState(null);
   const [mensagem, setMensagem] = useState("");
 
-  function calcular(operacao: string) {
+  function calcular(operacao) {
     setMensagem("");
     setResultado(null);
 
@@ -28,10 +28,12 @@ export default function Home() {
       return;
     }
 
-    // Operações que precisam de apenas um número
+    // Operação de raiz quadrada
     if (operacao === "raiz") {
       if (n1 < 0) {
-        setMensagem("Não é possível calcular a raiz de um número negativo.");
+        setMensagem(
+          "Não é possível calcular a raiz de um número negativo."
+        );
         return;
       }
 
@@ -50,7 +52,7 @@ export default function Home() {
       return;
     }
 
-    let resultadoCalculado: number;
+    let resultadoCalculado;
 
     switch (operacao) {
       case "soma":
@@ -76,7 +78,9 @@ export default function Home() {
 
       case "potencia":
         if (n1 === 0 && n2 < 0) {
-          setMensagem("Não é possível elevar zero a um número negativo.");
+          setMensagem(
+            "Não é possível elevar zero a um número negativo."
+          );
           return;
         }
 
@@ -88,12 +92,13 @@ export default function Home() {
         return;
     }
 
-    if (!Number.isFinite(resultadoCalculado!)) {
+    // Verifica se o resultado é válido
+    if (!Number.isFinite(resultadoCalculado)) {
       setMensagem("O resultado não é um número válido.");
       return;
     }
 
-    setResultado(resultadoCalculado!);
+    setResultado(resultadoCalculado);
   }
 
   return (
