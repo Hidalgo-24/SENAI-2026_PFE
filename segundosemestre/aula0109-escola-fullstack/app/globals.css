@@ -1,0 +1,235 @@
+/* CONFIGURAÇÃO GERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* HEADER PRINCIPAL */
+header {
+  width: 100%;
+  background: #e9e9e9;
+  position: relative;
+  padding-top: 25px;
+  padding-bottom: 0;
+  justify-content: space-between;
+}
+
+/* CONTAINER DO TOPO (LOGO, BUSCA E ATALHOS) */
+.top-bar {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+}
+
+/* LOGO ESTILIZADA (Substitua por <img src="logo-sesi.png"> se preferir) */
+.logo-sesi-box {
+  background-color: #e30613;
+  color: #fff;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 28px;
+  padding: 4px 12px;
+  letter-spacing: 1px;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.logo-text {
+  color: #666;
+  font-size: 13px;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid #aaa;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* LADO DIREITO (BUSCA + LINKS) */
+.right-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-right: none;
+  width: 280px;
+  outline: none;
+  font-size: 13px;
+  color: #555;
+}
+
+.search-box button {
+  background-color: #e30613;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.user-links {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+}
+
+.user-links a {
+  color: #555;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+}
+
+.user-links a:hover {
+  color: #e30613;
+}
+
+/* NAVEGAÇÃO / MENU INFERIOR DO HEADER */
+nav {
+  width: 100%;
+  background: #fafafa;
+  border-top: 2px solid #e30613;
+  margin-top: 15px;
+}
+
+.nav-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+header li {
+  display: flex;
+  align-items: center;
+}
+
+header li a {
+  display: block;
+  padding: 12px 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #444;
+  font-size: 12px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+/* BARRINHAS COLORIDAS */
+header li::before {
+  content: "";
+  width: 4px;
+  height: 16px;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+header li.home-item::before {
+  display: none;
+}
+header li.cad-alunos::before {
+  background: #e30613;
+}
+header li.list-alunos::before {
+  background: #009933;
+}
+header li.cad-notas::before {
+  background: #7c4a9e;
+}
+header li.list-notas::before {
+  background: #f58220;
+}
+
+header li a:hover {
+  background: #e8e8e8;
+}
+
+/* LINKS DA DIREITA NO MENU */
+.menu-right-links {
+  display: flex;
+  gap: 15px;
+}
+
+.menu-right-links a {
+  color: #444;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.menu-right-links a:hover {
+  color: #e30613;
+}
+
+/* CONTEÚDO PRINCIPAL */
+main {
+  max-width: 1250px;
+  margin: 100px auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+main h1 {
+  font-size: 32px;
+  color: #000;
+  font-weight: bold;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .right-area {
+    align-items: center;
+  }
+  .nav-container {
+    flex-direction: column;
+  }
+  header ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .menu-right-links {
+    padding: 10px 0;
+  }
+}
