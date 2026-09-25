@@ -1,75 +1,49 @@
 import Link from "next/link";
-import Image from "next/image";
-import logo from "../image/Sesi-SP.jpg";
 
 export default function Header() {
-    return (
-        <header className="header">
+  return (
+    <header className="siteHeader">
+      <div className="headerInner">
 
-            <div className="top-bar">
+        <Link href="/" className="brand">
+          <span className="brandMark">SESI</span>
 
-                <div className="logo-area">
-                    <Image
-                        src={logo}
-                        alt="Logo SESI"
-                        width={180}
-                        height={65}
-                        className="logo"
-                    />
+          <span className="brandText">
+            <strong>Sistema Escolar</strong>
+            <small>SESI Mirandópolis</small>
+          </span>
+        </Link>
 
-                    <div className="logo-info">
-                        <strong>SISTEMA ESCOLAR</strong>
-                        <span>SESI - São Paulo</span>
-                    </div>
-                </div>
+        <nav className="mainNav">
+          <Link href="/" className="active">
+            Início
+          </Link>
 
-                <div className="header-info">
-                    <span>🏫 Educação SESI</span>
-                    <span>📚 Sistema Escolar</span>
-                </div>
+          <Link href="/cadalunos">
+            Alunos
+          </Link>
 
-            </div>
+          <Link href="/cadanotas">
+            Notas
+          </Link>
 
-            <nav className="navbar">
-                <div className="nav-container">
+          <Link href="/">
+            Sobre
+          </Link>
+        </nav>
 
-                    <ul className="menu">
+        <Link
+          href="/cadalunos"
+          className="headerButton"
+        >
+          👤 &nbsp; Acessar sistema →
+        </Link>
 
-                        <li>
-                            <Link href="/">
-                                🏠 Início
-                            </Link>
-                        </li>
+        <button className="mobileMenu">
+          ☰
+        </button>
 
-                        <li className="cad-alunos">
-                            <Link href="/cadalunos">
-                                👨‍🎓 Cadastro - Alunos
-                            </Link>
-                        </li>
-
-                        <li className="list-alunos">
-                            <Link href="/listalunos">
-                                📋 Lista - Alunos
-                            </Link>
-                        </li>
-
-                        <li className="cad-notas">
-                            <Link href="/cadanotas">
-                                📝 Cadastro - Notas
-                            </Link>
-                        </li>
-
-                        <li className="list-notas">
-                            <Link href="/listanotas">
-                                📊 Lista - Notas
-                            </Link>
-                        </li>
-
-                    </ul>
-
-                </div>
-            </nav>
-
-        </header>
-    );
+      </div>
+    </header>
+  );
 }

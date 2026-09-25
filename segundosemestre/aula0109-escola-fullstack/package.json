@@ -1,25 +1,23 @@
 {
   "name": "aula0109-escola-fullstack",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",
-    "next": "16.3.4",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.4",
-    "typescript": "^5"
+    "@types/node": "26.4.0",
+    "@types/react": "19.2.18",
+    "eslint": "latest",
+    "eslint-config-next": "latest"
   }
 }

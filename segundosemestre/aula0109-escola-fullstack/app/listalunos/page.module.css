@@ -1,0 +1,172 @@
+.container {
+    min-height: 100vh;
+    padding: 40px;
+    background: #f5f6f8;
+}
+
+.card {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    margin: 0;
+    color: #333;
+    font-size: 28px;
+}
+
+.subtitulo {
+    margin-top: 8px;
+    margin-bottom: 25px;
+    color: #777;
+}
+
+/* ÁREA DE EDIÇÃO */
+
+.edicao {
+    background: #f8f9fb;
+    border: 1px solid #e1e1e1;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 25px;
+}
+
+.edicao h3 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: #333;
+}
+
+.edicao input {
+    width: calc(25% - 12px);
+    padding: 12px;
+    margin-right: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.edicao input:focus {
+    outline: none;
+    border-color: #e30613;
+}
+
+/* BOTÕES DA EDIÇÃO */
+
+.edicao button {
+    border: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+    transition: 0.2s;
+}
+
+.edicao button:first-of-type {
+    background: #e30613;
+    color: white;
+}
+
+.edicao button:first-of-type:hover {
+    background: #c80511;
+}
+
+.edicao button:last-of-type {
+    background: #777;
+    color: white;
+}
+
+.edicao button:last-of-type:hover {
+    background: #555;
+}
+
+/* TABELA */
+
+.tabelaContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabelaContainer table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabelaContainer th {
+    background: #e30613;
+    color: white;
+    padding: 14px;
+    text-align: left;
+}
+
+.tabelaContainer td {
+    padding: 13px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.tabelaContainer tr:hover {
+    background: #f8f8f8;
+}
+
+/* BOTÕES DA TABELA */
+
+.acoes {
+    white-space: nowrap;
+}
+
+.acoes button {
+    border: none;
+    padding: 9px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 7px;
+}
+
+/* EDITAR */
+
+.acoes button:first-child {
+    background: #e30613;
+    color: white;
+}
+
+.acoes button:first-child:hover {
+    background: #c80511;
+}
+
+/* DELETAR */
+
+.acoes button:last-child {
+    background: #333;
+    color: white;
+}
+
+.acoes button:last-child:hover {
+    background: #111;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 800px) {
+
+    .container {
+        padding: 20px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .edicao input {
+        width: 100%;
+        margin-right: 0;
+    }
+}

@@ -1,195 +1,136 @@
-    'use client';
 
-    import { useState } from "react";
-    import Header from "../componentes/header";
+'use client';
 
-    export default function CadAlunos() {
+import { useState } from "react";
+import Header from "../componentes/header";
+import styles from "./page.module.css";
 
-        const [nome, setNome] = useState("");
-        const [idade, setIdade] = useState("");
-        const [serie, setSerie] = useState("");
-        const [ra, setRa] = useState("");
+export default function CadAlunos() {
 
-        function salvarAluno(e) {
+    const [nome, setNome] = useState('');
+    const [idade, setIdade] = useState('');
+    const [serie, setSerie] = useState('');
+    const [ra, setRa] = useState('');
 
-            e.preventDefault();
+    async function salvarAluno(e) {
+        e.preventDefault();
 
-            if (!nome || !idade || !serie || !ra) {
-                alert("Preencha todos os campos.");
+        try {
+            const resposta = await fetch("/api/alunos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nome,
+                    idade: Number(idade),
+                    serie,
+                    ra
+                })
+            });
+
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+                alert(dados.mensagem);
                 return;
             }
 
-            const alunosSalvos =
-                JSON.parse(localStorage.getItem("alunos")) || [];
-
-            const novoAluno = {
-                id: Date.now(),
-                nome,
-                idade,
-                serie,
-                ra
-            };
-
-            alunosSalvos.push(novoAluno);
-
-            localStorage.setItem(
-                "alunos",
-                JSON.stringify(alunosSalvos)
-            );
-
             alert("Aluno cadastrado com sucesso!");
 
-            setNome("");
-            setIdade("");
-            setSerie("");
-            setRa("");
+            setNome('');
+            setIdade('');
+            setSerie('');
+            setRa('');
+
+        } catch (error) {
+            console.error(error);
+            alert("Erro ao cadastrar aluno");
         }
+    }
 
-        return (
-            <>
-                <Header />
+    return (
+        <>
+            <Header />
 
-                <main>
+            <main className={styles.container}>
 
-                    <div className="form-container">
+                <div className={styles.card}>
 
-                        <div className="form-header">
+                    <h2>Cadastro de Alunos</h2>
 
-                            <h2>
-                                Cadastro de Alunos
-                            </h2>
+                    <p className={styles.subtitulo}>
+                        Preencha os dados do aluno
+                    </p>
 
-                            <p>
-                                Cadastre um novo aluno no Sistema Escolar SESI.
-                            </p>
+                    <form onSubmit={salvarAluno}>
+
+                        <div className={styles.campo}>
+                            <label htmlFor="nome">Nome</label>
+
+                            <input
+                                id="nome"
+                                type="text"
+                                placeholder="Digite o nome do aluno"
+                                value={nome}
+                                onChange={(e) => setNome(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div className={styles.linha}>
+
+                            <div className={styles.campo}>
+                                <label htmlFor="idade">Idade</label>
+
+                                <input
+                                    id="idade"
+                                    type="number"
+                                    placeholder="Digite a idade"
+                                    value={idade}
+                                    onChange={(e) => setIdade(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <div className={styles.campo}>
+                                <label htmlFor="serie">Série</label>
+
+                                <input
+                                    id="serie"
+                                    type="text"
+                                    placeholder="Ex: 3B"
+                                    value={serie}
+                                    onChange={(e) => setSerie(e.target.value)}
+                                    required
+                                />
+                            </div>
 
                         </div>
 
-                        <form
-                            className="form"
-                            onSubmit={salvarAluno}
-                        >
+                        <div className={styles.campo}>
+                            <label htmlFor="ra">RA</label>
 
-                            <div className="campo">
+                            <input
+                                id="ra"
+                                type="number"
+                                placeholder="Digite o RA"
+                                value={ra}
+                                onChange={(e) => setRa(e.target.value)}
+                                required
+                            />
+                        </div>
 
-                                <label htmlFor="nome">
-                                    Nome completo
-                                </label>
+                        <button type="submit">
+                            Salvar
+                        </button>
 
-                                <input
-                                    id="nome"
-                                    type="text"
-                                    placeholder="Digite o nome do aluno"
-                                    value={nome}
-                                    onChange={(e) =>
-                                        setNome(e.target.value)
-                                    }
-                                />
+                    </form>
 
-                            </div>
+                </div>
 
-                            <div className="form-row">
+            </main>
+        </>
+    );
+}
 
-                                <div className="campo">
-
-                                    <label htmlFor="idade">
-                                        Idade
-                                    </label>
-
-                                    <input
-                                        id="idade"
-                                        type="number"
-                                        placeholder="Ex: 15"
-                                        value={idade}
-                                        onChange={(e) =>
-                                            setIdade(e.target.value)
-                                        }
-                                    />
-
-                                </div>
-
-                                <div className="campo">
-
-                                    <label htmlFor="serie">
-                                        Série
-                                    </label>
-
-                                    <select
-                                        id="serie"
-                                        value={serie}
-                                        onChange={(e) =>
-                                            setSerie(e.target.value)
-                                        }
-                                    >
-
-                                        <option value="">
-                                            Selecione
-                                        </option>
-
-                                        <option value="6º Ano">
-                                            6º Ano
-                                        </option>
-
-                                        <option value="7º Ano">
-                                            7º Ano
-                                        </option>
-
-                                        <option value="8º Ano">
-                                            8º Ano
-                                        </option>
-
-                                        <option value="9º Ano">
-                                            9º Ano
-                                        </option>
-
-                                        <option value="1º Ano">
-                                            1º Ano
-                                        </option>
-
-                                        <option value="2º Ano">
-                                            2º Ano
-                                        </option>
-
-                                        <option value="3º Ano">
-                                            3º Ano
-                                        </option>
-
-                                    </select>
-
-                                </div>
-
-                            </div>
-
-                            <div className="campo">
-
-                                <label htmlFor="ra">
-                                    RA
-                                </label>
-
-                                <input
-                                    id="ra"
-                                    type="text"
-                                    placeholder="Digite o RA do aluno"
-                                    value={ra}
-                                    onChange={(e) =>
-                                        setRa(e.target.value)
-                                    }
-                                />
-
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="botao"
-                            >
-                                Salvar aluno
-                            </button>
-
-                        </form>
-
-                    </div>
-
-                </main>
-            </>
-        );
-    }

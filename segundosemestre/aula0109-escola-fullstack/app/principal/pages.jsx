@@ -1,101 +1,595 @@
 import Link from "next/link";
-import Header from "../componentes/header";
+import styles from "../page.module.css";
+
+const noticias = [
+  {
+    categoria: "EDUCAÇÃO",
+    titulo: "SESI promove novas atividades para os alunos",
+    texto:
+      "Confira as novidades e projetos que estão acontecendo na escola.",
+    data: "01 SET 2026",
+    imagem:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80",
+  },
+  {
+    categoria: "ESPORTES",
+    titulo: "Alunos participam de atividades esportivas",
+    texto:
+      "Esporte, integração e aprendizado fazem parte da rotina escolar.",
+    data: "28 AGO 2026",
+    imagem:
+      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1000&q=80",
+  },
+  {
+    categoria: "PROJETOS",
+    titulo: "Projetos escolares incentivam criatividade",
+    texto:
+      "Conheça alguns dos projetos desenvolvidos pelos estudantes.",
+    data: "25 AGO 2026",
+    imagem:
+      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80",
+  },
+];
 
 export default function Principal() {
-    return (
-        <>
-            <Header />
+  return (
+    <main className={styles.page}>
 
-            <main className="pagina-principal">
+      {/* =========================
+          HERO
+      ========================= */}
 
-                <section className="hero">
+      <section className={styles.hero}>
 
-                    <small>SISTEMA ESCOLAR SESI</small>
+        <div className={styles.heroOverlay}></div>
 
-                    <h1>
-                        Bem-vindo ao Sistema Escolar
-                    </h1>
+        <div className={styles.heroContent}>
 
-                    <p>
-                        Gerencie alunos, cadastros e notas de forma
-                        simples e organizada através do sistema escolar.
-                    </p>
+          <span className={styles.heroTag}>
+            SESI MIRANDÓPOLIS • SISTEMA ESCOLAR
+          </span>
 
-                </section>
+          <h1>
+            Educação que
+            <strong>transforma.</strong>
+          </h1>
 
-                <section className="cards">
+          <p>
+            Bem-vindo ao Sistema Escolar SESI Mirandópolis.
+            Gerencie alunos, notas e informações acadêmicas
+            de forma simples, rápida e organizada.
+          </p>
 
-                    <div className="card">
-                        <div className="icone">👨‍🎓</div>
+          <div className={styles.heroButtons}>
 
-                        <h3>Alunos</h3>
+            <Link
+              href="/cadalunos"
+              className={styles.primaryButton}
+            >
+              Acessar sistema
+              <span>→</span>
+            </Link>
 
-                        <p>
-                            Cadastre novos alunos e consulte
-                            as informações dos estudantes.
-                        </p>
+            <a
+              href="#noticias"
+              className={styles.secondaryButton}
+            >
+              Ver novidades
+            </a>
 
-                        <Link href="/cadalunos">
-                            Cadastrar aluno →
-                        </Link>
-                    </div>
+          </div>
 
-                    <div className="card">
-                        <div className="icone">📚</div>
+        </div>
 
-                        <h3>Notas</h3>
 
-                        <p>
-                            Registre e acompanhe as notas
-                            dos alunos cadastrados.
-                        </p>
+        {/* PAINEL DO SISTEMA */}
 
-                        <Link href="/cadanotas">
-                            Cadastrar nota →
-                        </Link>
-                    </div>
+        <div className={styles.heroRight}>
 
-                    <div className="card">
-                        <div className="icone">🏫</div>
+          <div className={styles.heroShape}></div>
 
-                        <h3>SESI</h3>
+          <div className={styles.portalCard}>
 
-                        <p>
-                            O SESI São Paulo atua na educação,
-                            oferecendo formação e desenvolvimento
-                            para seus estudantes.
-                        </p>
-                    </div>
+            <div className={styles.portalHeader}>
 
-                </section>
+              <div className={styles.portalLogo}>
+                SESI
+              </div>
 
-                <section
-                    style={{
-                        marginTop: "35px",
-                        background: "#fff",
-                        padding: "30px",
-                        borderRadius: "12px",
-                        boxShadow: "0 5px 20px rgba(0,0,0,0.05)"
-                    }}
-                >
+              <span className={styles.status}>
+                <i></i>
+                Sistema online
+              </span>
 
-                    <h2 style={{ marginBottom: "12px" }}>
-                        Sobre o sistema
-                    </h2>
+            </div>
 
-                    <p style={{
-                        color: "#666",
-                        lineHeight: "1.7"
-                    }}>
-                        Este sistema foi desenvolvido para facilitar
-                        o gerenciamento das informações escolares,
-                        permitindo cadastrar alunos, consultar registros
-                        e administrar notas.
-                    </p>
 
-                </section>
+            <div className={styles.portalIcon}>
+              🎓
+            </div>
 
-            </main>
-        </>
-    );
+
+            <span className={styles.portalSmall}>
+              PORTAL ESCOLAR
+            </span>
+
+
+            <h2>
+              SESI Mirandópolis
+            </h2>
+
+
+            <p>
+              Sistema de gerenciamento escolar
+            </p>
+
+
+            <div className={styles.portalLine}></div>
+
+
+            <div className={styles.portalInfo}>
+              <span>
+                Cadastro de alunos
+              </span>
+
+              <strong>
+                ✓
+              </strong>
+            </div>
+
+
+            <div className={styles.portalInfo}>
+              <span>
+                Controle de notas
+              </span>
+
+              <strong>
+                ✓
+              </strong>
+            </div>
+
+
+            <div className={styles.portalInfo}>
+              <span>
+                Sistema organizado
+              </span>
+
+              <strong>
+                ✓
+              </strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div className={styles.scrollText}>
+          ROLE PARA CONTINUAR ↓
+        </div>
+
+      </section>
+
+
+      {/* =========================
+          INDICADORES
+      ========================= */}
+
+      <section className={styles.numbers}>
+
+        <div className={styles.numberItem}>
+
+          <strong>
+            01
+          </strong>
+
+          <span>
+            Cadastro
+            <br />
+            de alunos
+          </span>
+
+        </div>
+
+
+        <div className={styles.numberItem}>
+
+          <strong>
+            02
+          </strong>
+
+          <span>
+            Controle
+            <br />
+            de notas
+          </span>
+
+        </div>
+
+
+        <div className={styles.numberItem}>
+
+          <strong>
+            03
+          </strong>
+
+          <span>
+            Informações
+            <br />
+            escolares
+          </span>
+
+        </div>
+
+
+        <div className={styles.numberItem}>
+
+          <strong>
+            04
+          </strong>
+
+          <span>
+            Acesso
+            <br />
+            rápido
+          </span>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================
+          NOTÍCIAS
+      ========================= */}
+
+      <section
+        id="noticias"
+        className={styles.news}
+      >
+
+        <div className={styles.sectionTop}>
+
+          <div>
+
+            <span className={styles.sectionLabel}>
+              NOTÍCIAS
+            </span>
+
+            <h2>
+              Novidades do SESI
+            </h2>
+
+            <p>
+              Fique por dentro das principais notícias
+              e acontecimentos da nossa escola.
+            </p>
+
+          </div>
+
+
+          <span className={styles.newsCounter}>
+            03 NOTÍCIAS
+          </span>
+
+        </div>
+
+
+        <div className={styles.newsGrid}>
+
+          {noticias.map((noticia, index) => (
+
+            <article
+              key={index}
+              className={styles.newsCard}
+            >
+
+              <div
+                className={styles.newsImage}
+                style={{
+                  backgroundImage: `url("${noticia.imagem}")`,
+                }}
+              >
+
+                <span>
+                  {noticia.categoria}
+                </span>
+
+              </div>
+
+
+              <div className={styles.newsBody}>
+
+                <small>
+                  {noticia.data}
+                </small>
+
+                <h3>
+                  {noticia.titulo}
+                </h3>
+
+                <p>
+                  {noticia.texto}
+                </p>
+
+                <a href="#noticias">
+                  Ler notícia →
+                </a>
+
+              </div>
+
+            </article>
+
+          ))}
+
+        </div>
+
+      </section>
+
+
+      {/* =========================
+          SISTEMA ESCOLAR
+      ========================= */}
+
+      <section className={styles.system}>
+
+        <div className={styles.systemTitle}>
+
+          <span className={styles.sectionLabel}>
+            SISTEMA ESCOLAR
+          </span>
+
+          <h2>
+            Tudo em um só lugar.
+          </h2>
+
+          <p>
+            Acesse rapidamente as principais funções
+            do sistema do SESI Mirandópolis.
+          </p>
+
+        </div>
+
+
+        <div className={styles.systemGrid}>
+
+          {/* CADASTRAR ALUNOS */}
+
+          <Link
+            href="/cadalunos"
+            className={styles.systemCard}
+          >
+
+            <span className={styles.systemNumber}>
+              01
+            </span>
+
+            <span className={styles.systemIcon}>
+              👨‍🎓
+            </span>
+
+            <h3>
+              Cadastrar alunos
+            </h3>
+
+            <p>
+              Adicione novos alunos ao sistema escolar.
+            </p>
+
+            <strong>
+              Acessar →
+            </strong>
+
+          </Link>
+
+
+          {/* LISTA DE ALUNOS */}
+
+          <Link
+            href="/listalunos"
+            className={styles.systemCard}
+          >
+
+            <span className={styles.systemNumber}>
+              02
+            </span>
+
+            <span className={styles.systemIcon}>
+              📋
+            </span>
+
+            <h3>
+              Lista de alunos
+            </h3>
+
+            <p>
+              Consulte, edite e exclua alunos cadastrados.
+            </p>
+
+            <strong>
+              Acessar →
+            </strong>
+
+          </Link>
+
+
+          {/* CADASTRAR NOTAS */}
+
+          <Link
+            href="/cadanotas"
+            className={styles.systemCard}
+          >
+
+            <span className={styles.systemNumber}>
+              03
+            </span>
+
+            <span className={styles.systemIcon}>
+              📝
+            </span>
+
+            <h3>
+              Cadastrar notas
+            </h3>
+
+            <p>
+              Registre e organize as notas dos alunos.
+            </p>
+
+            <strong>
+              Acessar →
+            </strong>
+
+          </Link>
+
+
+          {/* LISTA DE NOTAS */}
+
+          <Link
+            href="/listanotas"
+            className={styles.systemCard}
+          >
+
+            <span className={styles.systemNumber}>
+              04
+            </span>
+
+            <span className={styles.systemIcon}>
+              📊
+            </span>
+
+            <h3>
+              Lista de notas
+            </h3>
+
+            <p>
+              Consulte, edite e exclua as notas registradas.
+            </p>
+
+            <strong>
+              Acessar →
+            </strong>
+
+          </Link>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================
+    SOBRE
+========================= */}
+
+<section className={styles.about}>
+
+    <div className={styles.aboutRed}></div>
+
+    <div className={styles.aboutContent}>
+
+        <span className={styles.sectionLabel}>
+            SESI MIRANDÓPOLIS
+        </span>
+
+        <h2>
+            Aprender.
+            <br />
+            Criar.
+            <br />
+            <strong>Transformar.</strong>
+        </h2>
+
+    </div>
+
+    <div className={styles.aboutText}>
+
+        <p>
+            O SESI busca proporcionar uma educação
+            que prepara os alunos para os desafios
+            do presente e do futuro.
+        </p>
+
+        <p>
+            Este sistema foi desenvolvido para
+            facilitar o gerenciamento e a organização
+            das informações escolares.
+        </p>
+
+        <p>
+            Através dele é possível cadastrar alunos,
+            consultar informações e controlar as
+            notas de forma simples e organizada.
+        </p>
+
+        <Link href="/cadalunos">
+            Entrar no sistema →
+        </Link>
+
+    </div>
+
+</section>
+      {/* =========================
+          RODAPÉ
+      ========================= */}
+
+      <footer className={styles.footer}>
+
+        <div className={styles.footerBrand}>
+
+          <span>
+            SESI
+          </span>
+
+          <div>
+
+            <strong>
+              SESI Mirandópolis
+            </strong>
+
+            <small>
+              Sistema Escolar
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <nav className={styles.footerLinks}>
+
+          <Link href="/">
+            Início
+          </Link>
+
+          <Link href="/cadalunos">
+            Alunos
+          </Link>
+
+          <Link href="/listalunos">
+            Lista de alunos
+          </Link>
+
+          <Link href="/cadanotas">
+            Notas
+          </Link>
+
+          <Link href="/listanotas">
+            Lista de notas
+          </Link>
+
+          <a href="#noticias">
+            Notícias
+          </a>
+
+        </nav>
+
+
+        <p>
+          © 2026 SESI Mirandópolis
+        </p>
+
+      </footer>
+
+    </main>
+  );
 }
