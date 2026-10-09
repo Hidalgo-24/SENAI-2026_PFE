@@ -1,0 +1,9 @@
+rosa = #e27396
+
+rosa mais claro = #ea9ab2
+
+rosa bb = #efcfe3
+
+verde bb = #eaf2d7
+
+azul bb = #b3dee2

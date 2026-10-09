@@ -1,0 +1,165 @@
+.container {
+min-height: calc(100vh - 80px);
+padding: 40px 20px;
+background-color: #f4f4f4;
+box-sizing: border-box;
+}
+
+.headerSection {
+max-width: 1200px;
+margin: 0 auto 25px;
+}
+
+.headerSection h2 {
+margin: 0 0 8px;
+color: #c62828;
+font-size: 28px;
+}
+
+.headerSection p {
+margin: 0;
+color: #666;
+font-size: 15px;
+}
+
+.tableCard {
+max-width: 1200px;
+margin: 0 auto;
+padding: 25px;
+background-color: #fff;
+border-radius: 10px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+box-sizing: border-box;
+}
+
+.actions {
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 15px;
+margin-bottom: 20px;
+}
+
+.search {
+width: 100%;
+max-width: 350px;
+padding: 12px;
+border: 1px solid #ccc;
+border-radius: 6px;
+font-size: 14px;
+box-sizing: border-box;
+}
+
+.search:focus {
+outline: 2px solid #c62828;
+border-color: #c62828;
+}
+
+.total {
+color: #666;
+font-size: 14px;
+}
+
+.tableWrapper {
+width: 100%;
+overflow-x: auto;
+}
+
+.table {
+width: 100%;
+min-width: 750px;
+border-collapse: collapse;
+}
+
+.table th {
+padding: 15px;
+background-color: #c62828;
+color: white;
+text-align: center;
+font-size: 14px;
+}
+
+.table th:first-child {
+text-align: left;
+}
+
+.table td {
+padding: 15px;
+border-bottom: 1px solid #eee;
+color: #444;
+text-align: center;
+font-size: 14px;
+}
+
+.table td:first-child {
+text-align: left;
+}
+
+.table tbody tr:hover {
+background-color: #fff1f1;
+}
+
+.buttons {
+display: flex;
+justify-content: center;
+gap: 8px;
+}
+
+.editButton,
+.deleteButton {
+padding: 9px 12px;
+border: none;
+border-radius: 5px;
+color: white;
+font-size: 13px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.editButton {
+background-color: #c62828;
+}
+
+.editButton:hover {
+background-color: #a51d1d;
+}
+
+.deleteButton {
+background-color: #222;
+}
+
+.deleteButton:hover {
+background-color: #444;
+}
+
+.empty {
+padding: 25px !important;
+text-align: center !important;
+color: #777 !important;
+}
+
+@media (max-width: 700px) {
+.container {
+padding: 25px 12px;
+}
+
+
+.tableCard {
+    padding: 15px;
+}
+
+.headerSection h2 {
+    font-size: 24px;
+}
+
+.actions {
+    align-items: stretch;
+}
+
+.search {
+    max-width: 100%;
+}
+
+
+}
