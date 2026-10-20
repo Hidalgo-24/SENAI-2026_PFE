@@ -1,7 +1,6 @@
-
 'use client';
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Header from "../componentes/header";
 import styles from "./page.module.css";
@@ -23,7 +22,8 @@ export default function ListNotas() {
             const dados = await resposta.json();
 
             if (!resposta.ok || !Array.isArray(dados)) {
-                throw new Error(dados.erro || "Erro ao buscar notas.");
+                setNotas([]);
+                return;
             }
 
             setNotas(dados);
@@ -39,10 +39,34 @@ export default function ListNotas() {
         router.push(`/editanotas?id=${encodeURIComponent(id)}`);
     }
 
-    function excluirNota(id) {
-        router.push(`/excluinotas?id=${encodeURIComponent(id)}`);
+    async function excluirNota(id) {
+        if (!confirm("Deseja realmente excluir esta nota?")) {
+            return;
+        }
+
+        try {
+            const resposta = await fetch(`/api/notas/${id}`, {
+                method: "DELETE",
+            });
+
+            if (!resposta.ok) {
+                // Fallback para envio com body
+                await fetch("/api/notas", {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id_notas: id }),
+                });
+            }
+
+            alert("Nota excluída com sucesso!");
+            carregarNotas();
+        } catch (erro) {
+            console.error("Erro ao excluir nota:", erro);
+            router.push(`/excluinotas?id=${encodeURIComponent(id)}`);
+        }
     }
 
+    // FILTRO DE BUSCA
     const notasFiltradas = notas.filter((nota) => {
         const termo = pesquisa.trim().toLowerCase();
 
@@ -50,9 +74,9 @@ export default function ListNotas() {
             String(nota.nome ?? "").toLowerCase().includes(termo) ||
             String(nota.t1 ?? "").toLowerCase().includes(termo) ||
             String(nota.t2 ?? "").toLowerCase().includes(termo) ||
-            String(nota.n1 ?? "").toLowerCase().includes(termo) ||
-            String(nota.n2 ?? "").toLowerCase().includes(termo) ||
-            String(nota.n3 ?? "").toLowerCase().includes(termo)
+            String(nota.n1 ?? nota.nota1 ?? "").toLowerCase().includes(termo) ||
+            String(nota.n2 ?? nota.nota2 ?? "").toLowerCase().includes(termo) ||
+            String(nota.n3 ?? nota.nota3 ?? "").toLowerCase().includes(termo)
         );
     });
 
@@ -60,16 +84,18 @@ export default function ListNotas() {
         <>
             <Header />
 
-            <main className={styles.container}>
-                <section className={styles.headerSection}>
+            <main className={styles.main || styles.container}>
+
+                <section className={styles.tituloArea || styles.headerSection}>
                     <h2>Lista de Notas</h2>
 
                     <p>
-                        Consulte as notas cadastradas dos alunos.
+                        Consulte todas as notas cadastradas no sistema.
                     </p>
                 </section>
 
-                <section className={styles.tableCard}>
+                <section className={styles.tabelaContainer || styles.tableCard}>
+
                     <div className={styles.actions}>
                         <input
                             type="text"
@@ -82,17 +108,17 @@ export default function ListNotas() {
 
                         <div className={styles.total}>
                             Total: {notasFiltradas.length}{" "}
-                            {notasFiltradas.length === 1
-                                ? "registro"
-                                : "registros"}
+                            {notasFiltradas.length === 1 ? "registro" : "registros"}
                         </div>
                     </div>
 
                     <div className={styles.tableWrapper}>
-                        <table className={styles.table}>
+                        <table className={styles.tabela || styles.table}>
+
                             <thead>
                                 <tr>
-                                    <th>Nome do aluno</th>
+                                    <th>ID</th>
+                                    <th>Nome</th>
                                     <th>T1</th>
                                     <th>T2</th>
                                     <th>N1</th>
@@ -105,47 +131,37 @@ export default function ListNotas() {
                             <tbody>
                                 {carregando ? (
                                     <tr>
-                                        <td
-                                            colSpan="7"
-                                            className={styles.empty}
-                                        >
+                                        <td colSpan="8" className={styles.empty}>
                                             Carregando notas...
                                         </td>
                                     </tr>
                                 ) : notasFiltradas.length > 0 ? (
                                     notasFiltradas.map((nota) => (
-                                        <tr key={nota.id_notas}>
-                                            <td>{nota.nome}</td>
-                                            <td>{nota.t1}</td>
-                                            <td>{nota.t2}</td>
-                                            <td>{nota.n1}</td>
-                                            <td>{nota.n2}</td>
-                                            <td>{nota.n3}</td>
+                                        <tr key={nota.id_notas || nota.id_nota || nota.id_aluno}>
+                                            <td>{nota.id_notas || nota.id_nota || "-"}</td>
+                                            <td>{nota.nome || nota.nome_aluno || "-"}</td>
+                                            <td>{nota.t1 ?? "-"}</td>
+                                            <td>{nota.t2 ?? "-"}</td>
+                                            <td>{nota.n1 ?? nota.nota1 ?? "-"}</td>
+                                            <td>{nota.n2 ?? nota.nota2 ?? "-"}</td>
+                                            <td>{nota.n3 ?? nota.nota3 ?? "-"}</td>
 
                                             <td>
                                                 <div className={styles.buttons}>
                                                     <button
                                                         type="button"
-                                                        className={styles.editButton}
-                                                        onClick={() =>
-                                                            editarNota(
-                                                                nota.id_notas
-                                                            )
-                                                        }
+                                                        className={styles.botaoEditar || styles.editButton}
+                                                        onClick={() => editarNota(nota.id_notas || nota.id_nota)}
                                                     >
                                                         Editar
                                                     </button>
 
                                                     <button
                                                         type="button"
-                                                        className={styles.deleteButton}
-                                                        onClick={() =>
-                                                            excluirNota(
-                                                                nota.id_notas
-                                                            )
-                                                        }
+                                                        className={styles.botaoExcluir || styles.deleteButton}
+                                                        onClick={() => excluirNota(nota.id_notas || nota.id_nota)}
                                                     >
-                                                        Deletar
+                                                        Excluir
                                                     </button>
                                                 </div>
                                             </td>
@@ -153,20 +169,19 @@ export default function ListNotas() {
                                     ))
                                 ) : (
                                     <tr>
-                                        <td
-                                            colSpan="7"
-                                            className={styles.empty}
-                                        >
+                                        <td colSpan="8" className={styles.empty}>
                                             Nenhuma nota encontrada.
                                         </td>
                                     </tr>
                                 )}
                             </tbody>
+
                         </table>
                     </div>
+
                 </section>
+
             </main>
         </>
     );
 }
-

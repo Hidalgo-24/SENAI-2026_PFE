@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from "react";
@@ -17,16 +16,21 @@ export default function ListAlunos() {
         buscarAlunos();
     }, []);
 
+    // BUSCAR ALUNOS
     async function buscarAlunos() {
         try {
-            const resposta = await fetch("/api/alunos");
+            setCarregando(true);
+            let resposta = await fetch("/api/alunos/lista");
+            if (!resposta.ok) {
+                resposta = await fetch("/api/alunos");
+            }
+
             const dados = await resposta.json();
 
-            if (resposta.ok && Array.isArray(dados)) {
+            if (Array.isArray(dados)) {
                 setAlunos(dados);
             } else {
                 setAlunos([]);
-                alert(dados.erro || "Erro ao buscar alunos.");
             }
         } catch (erro) {
             console.error("Erro ao buscar alunos:", erro);
@@ -36,17 +40,50 @@ export default function ListAlunos() {
         }
     }
 
-    function editarAluno(id) {
-        router.push(`/editaaluno?id=${encodeURIComponent(id)}`);
+
+    function editarAlunos(id) {
+        router.push(`/editaaluno/${id}`);
     }
 
-    function excluirAluno(id) {
-        router.push(`/excluialuno?id=${encodeURIComponent(id)}`);
+    async function excluirAlunos(event) {
+        event.preventDefault();
+
+        if (!confirm("Deseja realmente excluir este aluno?")) {
+            return;
+        }
+
+        const idAluno = event.target.dataset.id;
+
+        try {
+            let resposta = await fetch(`/api/alunos/${idAluno}`, {
+                method: "DELETE"
+            });
+
+            if (!resposta.ok) {
+                resposta = await fetch("/api/alunos", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        id_aluno: idAluno,
+                    }),
+                });
+            }
+
+            const dados = await resposta.json();
+            alert(dados.mensagem || dados.erro || "Aluno excluído!");
+
+            buscarAlunos();
+        } catch (erro) {
+            console.error("Erro ao excluir aluno:", erro);
+            alert("Erro ao excluir aluno.");
+        }
     }
 
+    // FILTRO DE BUSCA
     const alunosFiltrados = alunos.filter((aluno) => {
         const termo = pesquisa.trim().toLowerCase();
-
         return (
             String(aluno.id_aluno ?? "").toLowerCase().includes(termo) ||
             String(aluno.nome ?? "").toLowerCase().includes(termo) ||
@@ -70,25 +107,22 @@ export default function ListAlunos() {
                 </section>
 
                 <section className={styles.tableCard}>
+
                     <div className={styles.actions}>
                         <input
                             type="text"
                             placeholder="Pesquisar aluno..."
-                            aria-label="Pesquisar aluno"
                             className={styles.search}
                             value={pesquisa}
                             onChange={(e) => setPesquisa(e.target.value)}
                         />
 
                         <div className={styles.total}>
-                            Total: {alunosFiltrados.length}{" "}
-                            {alunosFiltrados.length === 1
-                                ? "aluno"
-                                : "alunos"}
+                            Total: {alunosFiltrados.length} {alunosFiltrados.length === 1 ? "aluno" : "alunos"}
                         </div>
                     </div>
 
-                    <div className={styles.tableWrapper}>
+                    <div className={styles.tableWrapper || ""}>
                         <table className={styles.table}>
                             <thead>
                                 <tr>
@@ -104,57 +138,45 @@ export default function ListAlunos() {
                             <tbody>
                                 {carregando ? (
                                     <tr>
-                                        <td
-                                            colSpan="6"
-                                            className={styles.empty}
-                                        >
+                                        <td colSpan="6" className={styles.empty}>
                                             Carregando alunos...
                                         </td>
                                     </tr>
                                 ) : alunosFiltrados.length > 0 ? (
-                                    alunosFiltrados.map((aluno) => (
-                                        <tr key={aluno.id_aluno}>
-                                            <td>{aluno.id_aluno}</td>
-                                            <td>{aluno.nome}</td>
-                                            <td>{aluno.idade}</td>
-                                            <td>{aluno.serie}</td>
-                                            <td>{aluno.ra}</td>
+                                    alunosFiltrados.map((aluno) => {
+                                        return (
+                                            <tr key={aluno.id_aluno}>
+                                                <td>{aluno.id_aluno}</td>
+                                                <td>{aluno.nome}</td>
+                                                <td>{aluno.idade}</td>
+                                                <td>{aluno.serie}</td>
+                                                <td>{aluno.ra}</td>
+                                                <td>
+                                                    <div className={styles.buttons || ""}>
+                                                        <button
+                                                            type="button"
+                                                            className={styles.editButton || ""}
+                                                            onClick={() => editarAlunos(aluno.id_aluno)}
+                                                        >
+                                                            Editar
+                                                        </button>
 
-                                            <td>
-                                                <div className={styles.buttons}>
-                                                    <button
-                                                        type="button"
-                                                        className={styles.editButton}
-                                                        onClick={() =>
-                                                            editarAluno(
-                                                                aluno.id_aluno
-                                                            )
-                                                        }
-                                                    >
-                                                        Editar
-                                                    </button>
-
-                                                    <button
-                                                        type="button"
-                                                        className={styles.deleteButton}
-                                                        onClick={() =>
-                                                            excluirAluno(
-                                                                aluno.id_aluno
-                                                            )
-                                                        }
-                                                    >
-                                                        Excluir
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))
+                                                        <button
+                                                            type="button"
+                                                            className={styles.deleteButton || ""}
+                                                            onClick={(e) => excluirAlunos(e)}
+                                                            data-id={aluno.id_aluno}
+                                                        >
+                                                            Excluir
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })
                                 ) : (
                                     <tr>
-                                        <td
-                                            colSpan="6"
-                                            className={styles.empty}
-                                        >
+                                        <td colSpan="6" className={styles.empty}>
                                             Nenhum aluno encontrado.
                                         </td>
                                     </tr>
@@ -162,9 +184,9 @@ export default function ListAlunos() {
                             </tbody>
                         </table>
                     </div>
+
                 </section>
             </main>
         </>
     );
 }
-

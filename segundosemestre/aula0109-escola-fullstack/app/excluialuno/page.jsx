@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState } from "react";
@@ -32,7 +31,8 @@ export default function ExcluirAluno() {
 
             try {
 
-                const resposta = await fetch("/api/alunos");
+                // MUDADO DE "/api/alunos" PARA "/api/alunos/lista"
+                const resposta = await fetch("/api/alunos/lista");
                 const dados = await resposta.json();
 
                 if (!resposta.ok) {
@@ -85,7 +85,8 @@ export default function ExcluirAluno() {
 
         try {
 
-            const resposta = await fetch("/api/alunos", {
+            // MUDADO DE "/api/alunos" PARA `/api/alunos/${id}`
+            const resposta = await fetch(`/api/alunos/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
