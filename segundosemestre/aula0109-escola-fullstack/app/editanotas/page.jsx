@@ -26,7 +26,7 @@ export default function EditaNotas({ params: paramsPromise }) {
     const [salvando, setSalvando] = useState(false);
 
     useEffect(() => {
-        if (!id) {
+        if (!id) { 
             setCarregando(false);
             return;
         }

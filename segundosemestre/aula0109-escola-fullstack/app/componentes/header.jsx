@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 
 export default function Header() {
@@ -33,10 +34,10 @@ export default function Header() {
         </nav>
 
         <Link
-          href="/cadalunos"
+          href="/login"
           className="headerButton"
         >
-          👤 &nbsp; Acessar sistema →
+          👤 &nbsp; Login →
         </Link>
 
         <button className="mobileMenu">
